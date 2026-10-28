@@ -1,0 +1,39 @@
+HayatiCare Patient App Guide: How to Use the Application
+
+HayatiCare is a healthcare management application designed to help patients manage their health conveniently from their mobile device. This guide explains how to use the key features available to you as a patient.
+
+Logging In and Resetting Your Password
+
+To log in, open the HayatiCare app and enter your registered email address and password on the login screen, then tap "Sign In." If you have forgotten your password, tap the "Forgot password?" link on the login screen. Enter your registered email address and tap "Send Reset Link." You will receive instructions to reset your password. Once reset, use your new password to log in.
+
+How to Book a New Appointment
+
+To request an appointment, tap the "Appointments" tab in the bottom navigation bar (the calendar icon). Then tap "Request Appointment" or the plus button. You will be prompted to select a doctor from the list of available physicians. Once you have chosen a doctor, select your preferred date from the calendar and pick an available time slot. Add a brief reason for your visit if prompted, then confirm the request. Your appointment will appear as "Pending" until confirmed by the clinic secretary or your doctor. You will receive a notification when the status changes.
+
+How to View Upcoming and Past Appointments
+
+In the "Appointments" tab, you can see all your upcoming and past appointments. Upcoming appointments are listed with their date, time, doctor name, and current status (Pending, Confirmed, etc.). Past appointments are also available for reference. Tap any appointment to see its full details including the doctor's name, location, and any secretary comments.
+
+How to View Your Lab and Test Results
+
+To view your test results, tap the "Test Results" or related section from your dashboard or the main navigation. A list of your uploaded results will appear, showing the test name, date, result value, and status. Results that fall outside the normal range will be highlighted or marked as "Flagged" in the app, making it easy to identify which results need follow-up with your doctor.
+
+How to Identify Flagged (Abnormal) Test Results
+
+Any result that is outside the established normal range for that test is automatically flagged by the system. In the test results list, flagged results are visually distinguished — they may appear in a different colour or carry a warning indicator. Tap the result to see the full details, including the normal range for comparison. If a result is flagged, the app will also send you a notification. Consult your doctor through HayatiCare for an explanation of any flagged result.
+
+How to Submit a Home Test Measurement
+
+If your doctor has asked you to monitor certain values at home (such as blood pressure or blood glucose), you can submit these readings through the app. From your dashboard or the test results section, look for "Submit Home Test" or a similar option. Select the type of test, enter the value you measured (along with the unit and date), and submit. Your doctor will be able to see your submitted readings.
+
+How to Use the Medical Chatbot
+
+Tap the "AI" tab (the chat bubble icon) in the bottom navigation bar to open the Medical Assistant. You can type a question in the input field at the bottom and tap send. The assistant can answer general health questions — such as explaining medical terms, providing reference ranges for common tests, and describing what various lab values mean — and can help you navigate the app. The chatbot will never provide a personal diagnosis or tell you what medication to take; those questions should be directed to your doctor through the app.
+
+How to View Notifications
+
+Tap the "Alerts" tab (the bell icon) in the bottom navigation bar to view your notifications. Notifications inform you about appointment confirmations, cancellations, rescheduled appointments, and flagged test results. Tap any notification to read its full message. You can mark notifications as read by tapping them.
+
+How to Contact or Reach Your Doctor Through the App
+
+If you have a question for your doctor, you can use the appointment system to schedule a consultation. Your doctor and the clinic secretary can also send you notifications through the app. For clinical questions about your test results or health condition, the most appropriate channel is booking an appointment or contacting the clinic directly, as the chatbot is not a substitute for professional medical consultation.

@@ -1,0 +1,14 @@
+flask
+flask-sqlalchemy
+flask-jwt-extended
+flask-migrate
+pymysql
+bcrypt
+python-dotenv
+flask-cors
+openai
+langchain
+langchain-openai
+langchain-community
+langchain-chroma
+chromadb

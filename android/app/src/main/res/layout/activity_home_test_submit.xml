@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Home Test"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Test ID"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/et_test_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. 1"
+                android:inputType="number"
+                android:background="@color/colorSurface"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor ID"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/et_doctor_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. 1"
+                android:inputType="number"
+                android:background="@color/colorSurface"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Value"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/et_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. 98.6"
+                android:inputType="numberDecimal"
+                android:background="@color/colorSurface"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/et_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. mg/dL"
+                android:background="@color/colorSurface"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date (YYYY-MM-DDTHH:MM)"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/et_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e.g. 2026-03-30T09:00"
+                android:background="@color/colorSurface"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fasting State"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="4dp" />
+
+            <Spinner
+                android:id="@+id/spn_fasting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorSurface"
+                android:padding="14dp"
+                android:layout_marginBottom="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notes (optional)"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/et_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Any additional notes"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:gravity="top"
+                android:background="@color/colorSurface"
+                android:padding="14dp"
+                android:layout_marginBottom="20dp" />
+
+            <Button
+                android:id="@+id/btn_submit_home_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit Measurement"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:padding="14dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

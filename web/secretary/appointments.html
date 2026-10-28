@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Appointments — HMSS</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🏥 HMSS</div>
+      <div class="sidebar-user-name" id="sidebar-user-name"></div>
+      <div class="sidebar-role">Admin Secretary</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="dashboard.html" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="manage_patients.html" data-page="manage_patients"><span class="nav-icon">👥</span> Manage Patients</a>
+      <a href="manage_doctors.html" data-page="manage_doctors"><span class="nav-icon">👨‍⚕️</span> Manage Doctors</a>
+      <a href="appointments.html" data-page="appointments"><span class="nav-icon">📅</span> Appointments</a>
+      <a href="notifications.html" data-page="notifications"><span class="nav-icon">🔔</span> Notifications</a>
+      <a href="results.html" data-page="results"><span class="nav-icon">🧪</span> Results</a>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" onclick="logout()">🚪 Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="content" id="main-content">
+    <div class="page-header">
+      <h1>Appointments</h1>
+      <button class="btn btn-primary" onclick="openCreateAppt()">+ New Appointment</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Patient</th><th>Doctor</th><th>Start</th><th>End</th><th>Reason</th><th>Location</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody id="appt-tbody">
+          <tr><td colspan="8" class="text-muted" style="padding:24px;text-align:center;">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Create appointment modal -->
+    <div class="modal-overlay" id="modal-create-appt">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>New Appointment</h2>
+          <button class="modal-close" onclick="closeCreateAppt()">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Patient *</label>
+              <select id="appt-patient-id" onchange="onPatientChange(this)"><option value="">Select Patient</option></select>
+            </div>
+            <div class="form-group">
+              <label>Doctor *</label>
+              <select id="appt-doctor-id" onchange="onDoctorChange(this)"><option value="">Select Doctor</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1;">
+              <label>Select Date</label>
+              <div class="date-selector">
+                <button type="button" class="date-arrow" onclick="prevDate()" id="date-arrow-prev">&lsaquo;</button>
+                <div class="date-cards" id="date-cards"></div>
+                <button type="button" class="date-arrow" onclick="nextDate()" id="date-arrow-next">&rsaquo;</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1;">
+              <label>Select Time</label>
+              <div class="time-slots" id="time-slots">
+                <div class="time-slot-placeholder">Select patient and doctor to view available times.</div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="appt-start" />
+          <input type="hidden" id="appt-end" />
+          <div class="form-row">
+            <div class="form-group"><label>Reason</label><input type="text" id="appt-reason" placeholder="Checkup" /></div>
+            <div class="form-group"><label>Location</label>
+              <select id="appt-location">
+                <option value="">Select location</option>
+                <option value="Doctor's Office">Doctor's Office</option>
+                <option value="Room 101">Room 101</option>
+                <option value="Room 102">Room 102</option>
+                <option value="Room 103">Room 103</option>
+                <option value="Lab">Lab</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" onclick="closeCreateAppt()">Cancel</button>
+          <button class="btn btn-primary" onclick="submitCreateAppt()">Create</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit appointment modal -->
+    <div class="modal-overlay" id="modal-edit-appt">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Edit Appointment</h2>
+          <button class="modal-close" onclick="closeEditAppt()">×</button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="edit-appt-id" />
+          <div class="form-row">
+            <div class="form-group">
+              <label>Patient</label>
+              <input type="text" id="edit-appt-patient" disabled />
+            </div>
+            <div class="form-group">
+              <label>Doctor</label>
+              <input type="text" id="edit-appt-doctor" disabled />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1;">
+              <label>Select Date</label>
+              <div class="date-selector">
+                <button type="button" class="date-arrow" onclick="prevDateEdit()" id="edit-date-arrow-prev">&lsaquo;</button>
+                <div class="date-cards" id="edit-date-cards"></div>
+                <button type="button" class="date-arrow" onclick="nextDateEdit()" id="edit-date-arrow-next">&rsaquo;</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group" style="grid-column:1/-1;">
+              <label>Select Time</label>
+              <div class="time-slots" id="edit-time-slots">
+                <div class="time-slot-placeholder">Select patient and doctor to view available times.</div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="edit-appt-start" />
+          <input type="hidden" id="edit-appt-end" />
+          <input type="hidden" id="edit-doctor-id" />
+          <input type="hidden" id="edit-patient-id" />
+          <div class="form-row">
+            <div class="form-group"><label>Reason</label><input type="text" id="edit-appt-reason" placeholder="Checkup" /></div>
+            <div class="form-group"><label>Location</label>
+              <select id="edit-appt-location">
+                <option value="">Select location</option>
+                <option value="Doctor's Office">Doctor's Office</option>
+                <option value="Room 101">Room 101</option>
+                <option value="Room 102">Room 102</option>
+                <option value="Room 103">Room 103</option>
+                <option value="Lab">Lab</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Status</label>
+              <select id="edit-appt-status">
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Secretary Comment</label>
+              <input type="text" id="edit-appt-comment" placeholder="Notes..." />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" onclick="closeEditAppt()">Cancel</button>
+          <button class="btn btn-primary" onclick="submitEditAppt()">Update</button>
+        </div>
+      </div>
+    </div>
+    <script>
+function pageInit() {
+  loadAppointments();
+  startAutoRefresh();
+}
+
+(function() {
+  function _dc() {
+    var user = getCurrentUser();
+    if (!user || user.role !== "secretary") {
+      clearSession();
+      window.location.href = "/index.html";
+      return;
+    }
+    initSidebar(user);
+    pageInit();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", _dc);
+  } else {
+    _dc();
+  }
+})();
+    </script>
+  </main>
+</div>
+
+<div id="toast-container"></div>
+<script src="/js/api.js"></script>
+<script src="/js/secretary.js"></script>
+</body>
+</html>

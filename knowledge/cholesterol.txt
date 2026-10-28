@@ -1,0 +1,56 @@
+Cholesterol: What It Is and What Your Results Mean
+
+Cholesterol is a waxy, fat-like substance found in every cell of the body. It is essential for building cell membranes, producing hormones (including sex hormones and stress hormones), making vitamin D, and producing bile acids that help digest fat. The body produces most of the cholesterol it needs in the liver; the rest comes from animal-based foods such as meat, eggs, and dairy.
+
+Because cholesterol is a fat and blood is water-based, cholesterol cannot travel freely in the bloodstream. It must be packaged into protein-covered particles called lipoproteins. The two most commonly discussed types are LDL and HDL.
+
+LDL — Low-Density Lipoprotein ("Bad" Cholesterol)
+
+LDL carries cholesterol from the liver to cells throughout the body. When there is more LDL than the cells need, the excess can deposit in the walls of arteries, forming plaques. Over time, plaques narrow and harden the arteries (atherosclerosis), restricting blood flow and increasing the risk of heart attack and stroke.
+
+Desirable LDL levels:
+- Optimal: < 2.6 mmol/L (< 100 mg/dL)
+- Near optimal: 2.6 – 3.3 mmol/L (100 – 129 mg/dL)
+- Borderline high: 3.4 – 4.1 mmol/L (130 – 159 mg/dL)
+- High: 4.1 – 4.9 mmol/L (160 – 189 mg/dL)
+- Very high: ≥ 4.9 mmol/L (≥ 190 mg/dL)
+
+HDL — High-Density Lipoprotein ("Good" Cholesterol)
+
+HDL carries cholesterol away from artery walls and back to the liver, where it is broken down and removed from the body. Higher HDL levels are associated with lower cardiovascular risk.
+
+Desirable HDL levels:
+- Low (higher risk): < 1.0 mmol/L (< 40 mg/dL) for men; < 1.3 mmol/L (< 50 mg/dL) for women
+- Desirable: ≥ 1.6 mmol/L (≥ 60 mg/dL)
+
+Triglycerides
+
+Triglycerides are another type of fat in the blood. They are stored as body fat after calories from food are not immediately used. High triglycerides are associated with increased cardiovascular risk, especially in combination with low HDL or high LDL.
+
+Desirable triglyceride levels:
+- Normal: < 1.7 mmol/L (< 150 mg/dL)
+- Borderline high: 1.7 – 2.2 mmol/L (150 – 199 mg/dL)
+- High: 2.3 – 5.6 mmol/L (200 – 499 mg/dL)
+- Very high: ≥ 5.7 mmol/L (≥ 500 mg/dL)
+
+Total Cholesterol
+
+Total cholesterol is the sum of LDL, HDL, and a portion of triglycerides. A general guideline:
+- Desirable: < 5.2 mmol/L (< 200 mg/dL)
+- Borderline high: 5.2 – 6.2 mmol/L (200 – 239 mg/dL)
+- High: ≥ 6.2 mmol/L (≥ 240 mg/dL)
+
+What a Lipid Panel Measures
+
+A lipid panel (also called a lipid profile) is a blood test that measures total cholesterol, LDL, HDL, and triglycerides. It is typically ordered as part of a cardiovascular risk assessment or during a routine health check. Fasting for 9–12 hours before the test is often recommended (though some labs accept non-fasting samples for total cholesterol and HDL). Results must be interpreted in the context of other risk factors such as age, family history, blood pressure, and smoking status.
+
+Lifestyle Factors That Influence Cholesterol
+
+- Diet: Saturated fats and trans fats raise LDL. Unsaturated fats (found in oils, nuts, and fish) tend to lower LDL and raise HDL.
+- Physical activity: Regular aerobic exercise tends to raise HDL and lower triglycerides.
+- Body weight: Excess weight raises LDL and triglycerides and lowers HDL.
+- Smoking: Lowers HDL and damages artery walls.
+- Alcohol: Moderate intake may raise HDL, but excessive intake raises triglycerides.
+- Genetics: Familial hypercholesterolaemia is an inherited condition causing very high LDL regardless of diet.
+
+For a full interpretation of your lipid panel results and what they mean for your cardiovascular health, consult your doctor through the HayatiCare app.

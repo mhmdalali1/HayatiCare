@@ -1,0 +1,37 @@
+Hemoglobin: What It Is and Why It Matters
+
+Hemoglobin is a protein found inside red blood cells. Its primary job is to carry oxygen from the lungs to every tissue and organ in the body, and to transport carbon dioxide — a waste product of cellular metabolism — back to the lungs so it can be exhaled. Without enough functional hemoglobin, the body's tissues cannot receive adequate oxygen, leading to a state called anemia.
+
+Hemoglobin is made up of four protein chains (two alpha and two beta chains in adults), each of which contains a heme group — an iron-containing ring that binds oxygen. This iron component is why dietary iron is essential: insufficient iron means the body cannot manufacture enough hemoglobin.
+
+Normal Reference Ranges
+
+Reference ranges vary slightly between laboratories, but commonly accepted values are:
+- Adult men: 13.5 – 17.5 g/dL
+- Adult women: 12.0 – 15.5 g/dL
+- Pregnant women: 11.0 – 14.0 g/dL (lower due to plasma volume expansion)
+- Children (ages 6–12): 11.5 – 15.5 g/dL
+- Newborns: 14.0 – 24.0 g/dL (high at birth, drops in first months of life)
+
+What Low Hemoglobin Means (Anemia)
+
+When hemoglobin falls below the normal range, the condition is called anemia. Common symptoms include fatigue, weakness, shortness of breath during exertion, pale skin, dizziness, and cold hands and feet. Anemia has many possible causes: iron deficiency (the most common worldwide), vitamin B12 or folate deficiency, chronic kidney disease, bone marrow disorders, blood loss, or destruction of red blood cells (hemolytic anemia). Identifying the cause requires additional testing and evaluation by a healthcare provider.
+
+What High Hemoglobin Means
+
+Elevated hemoglobin (polycythemia) can be a normal adaptation to high altitude — where oxygen is less available — or to heavy physical training. It can also result from dehydration (which concentrates the blood), smoking, or lung diseases that cause chronically low blood oxygen. In rarer cases it is caused by a bone marrow disorder. High hemoglobin increases blood viscosity and can raise the risk of clots.
+
+Factors That Affect Hemoglobin Levels
+
+Several lifestyle and physiological factors influence hemoglobin:
+- Diet: Iron, vitamin B12, and folate are all essential for red blood cell production. Deficiencies in any of these reduce hemoglobin synthesis.
+- Altitude: Living at high altitude stimulates the body to produce more red blood cells and hemoglobin.
+- Dehydration: Reduces plasma volume, artificially raising measured hemoglobin concentration.
+- Pregnancy: Plasma volume increases faster than red cell mass, diluting hemoglobin.
+- Chronic disease: Inflammation suppresses red blood cell production.
+
+How Hemoglobin Is Measured
+
+Hemoglobin is measured as part of a Complete Blood Count (CBC), a standard blood test. The CBC also reports hematocrit (the percentage of blood volume occupied by red blood cells), red blood cell count, mean corpuscular volume (MCV — average cell size), and other parameters that together help characterize the type of anemia if one is present.
+
+If your hemoglobin result is outside the normal range, your doctor is the right person to interpret what it means for your specific health situation. You can reach your doctor through the HayatiCare app.

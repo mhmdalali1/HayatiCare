@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Test Details — HayatiCare</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🏥 HMSS</div>
+      <div class="sidebar-user-name" id="sidebar-user-name"></div>
+      <div class="sidebar-role">Admin Secretary</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="dashboard.html" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="manage_patients.html" data-page="manage_patients"><span class="nav-icon">👥</span> Manage Patients</a>
+      <a href="manage_doctors.html" data-page="manage_doctors"><span class="nav-icon">👨‍⚕️</span> Manage Doctors</a>
+      <a href="appointments.html" data-page="appointments"><span class="nav-icon">📅</span> Appointments</a>
+      <a href="notifications.html" data-page="notifications"><span class="nav-icon">🔔</span> Notifications</a>
+      <a href="results.html" data-page="results"><span class="nav-icon">🧪</span> Results</a>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" onclick="logout()">🚪 Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="content" id="main-content">
+    <div class="page-header">
+      <h1 id="detail-title">Test Results</h1>
+      <a href="results.html" class="btn btn-outline" onclick="event.preventDefault();navigateTo('results.html')">← Back to Results</a>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Patient</th>
+            <th>Test Code</th>
+            <th>Test Name</th>
+            <th>Value</th>
+            <th>Unit</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="detail-tbody">
+          <tr><td colspan="7">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+var _detailRefreshInterval = null;
+var _detailTestCode = "";
+
+function pageInit() {
+  _detailTestCode = getTestCodeFromUrl();
+  if (!_detailTestCode) {
+    document.getElementById("detail-title").textContent = "No test specified";
+    return;
+  }
+  document.getElementById("detail-title").textContent = "Results — " + _detailTestCode;
+  loadDetail();
+  startDetailAutoRefresh();
+}
+
+function pageDestroy() {
+  stopDetailAutoRefresh();
+}
+
+function getTestCodeFromUrl() {
+  var params = new URLSearchParams(window.location.search);
+  var tc = params.get("test_code");
+  if (tc) return tc;
+  var path = window.location.pathname;
+  var parts = path.split("/");
+  return parts[parts.length - 1] || "";
+}
+
+function startDetailAutoRefresh() {
+  stopDetailAutoRefresh();
+  _detailRefreshInterval = setInterval(function() {
+    loadDetail(true);
+  }, 5000);
+}
+
+function stopDetailAutoRefresh() {
+  if (_detailRefreshInterval) {
+    clearInterval(_detailRefreshInterval);
+    _detailRefreshInterval = null;
+  }
+}
+
+function loadDetail(isAutoRefresh) {
+  var tbody = document.getElementById("detail-tbody");
+  if (!tbody) return;
+  if (!isAutoRefresh) {
+    tbody.innerHTML = "<tr><td colspan='7'>Loading...</td></tr>";
+  }
+  api.get("/api/patient-results/by-test/" + _detailTestCode).then(function(data) {
+    if (!data.success) {
+      if (!isAutoRefresh) tbody.innerHTML = "<tr><td colspan='7'>Error: " + data.message + "</td></tr>";
+      return;
+    }
+    tbody.innerHTML = "";
+    var list = data.data || [];
+    if (list.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" class="text-muted" style="text-align:center;padding:24px">No results for this test</td></tr>';
+      return;
+    }
+    list.forEach(function(r) {
+      var tr = document.createElement("tr");
+      var statusClass = r.status;
+      tr.innerHTML =
+        "<td>" + esc(r.patient_name || "?") + "</td>" +
+        "<td>" + esc(r.test_code || "?") + "</td>" +
+        "<td>" + esc(r.test_name || "?") + "</td>" +
+        "<td>" + esc(r.value || "?") + "</td>" +
+        "<td>" + esc(r.unit || "?") + "</td>" +
+        "<td><span class=\"badge badge-" + statusClass + "\">" + statusClass + "</span></td>" +
+        "<td>" + fmtDate(r.created_at) + "</td>";
+      tbody.appendChild(tr);
+    });
+  });
+}
+
+function fmtDate(iso) {
+  if (!iso) return "—";
+  var d = new Date(iso);
+  return d.toLocaleDateString() + " " + d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+}
+
+function esc(s) {
+  if (typeof s !== "string") return s || "";
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+(function() {
+  function _dc() {
+    var user = getCurrentUser();
+    if (!user || user.role !== "secretary") {
+      clearSession();
+      window.location.href = "/index.html";
+      return;
+    }
+    initSidebar(user);
+    pageInit();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", _dc);
+  } else {
+    _dc();
+  }
+})();
+    </script>
+  </main>
+</div>
+<div id="toast-container"></div>
+<script src="/js/api.js"></script>
+<script src="/js/secretary.js"></script>
+</body>
+</html>

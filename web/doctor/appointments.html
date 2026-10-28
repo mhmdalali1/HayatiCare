@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointments — HMSS</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🏥 HMSS</div>
+      <div class="sidebar-user-name" id="sidebar-user-name"></div>
+      <div class="sidebar-role">Doctor</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="dashboard.html" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="appointments.html" data-page="appointments"><span class="nav-icon">📅</span> Appointments</a>
+      <a href="patient_records.html" data-page="patient_records"><span class="nav-icon">👤</span> Patient Records</a>
+      <a href="results.html" data-page="results"><span class="nav-icon">🧪</span> Results</a>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" onclick="logout()">🚪 Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="content" id="main-content">
+    <div class="page-header">
+      <h1>Appointments</h1>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Patient</th><th>Start</th><th>End</th><th>Reason</th><th>Location</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="appt-tbody">
+          <tr><td colspan="7" class="text-muted" style="padding:24px;text-align:center;">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+function pageInit() {
+  loadAppointments();
+}
+
+(function() {
+  function _dc() {
+    var user = getCurrentUser();
+    if (!user || user.role !== "doctor") {
+      clearSession();
+      window.location.href = "/index.html";
+      return;
+    }
+    initSidebar(user);
+    pageInit();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", _dc);
+  } else {
+    _dc();
+  }
+})();
+    </script>
+  </main>
+</div>
+
+<!-- Reschedule modal -->
+<div class="modal-overlay" id="modal-reschedule">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Reschedule Appointment</h2>
+      <button class="modal-close" onclick="closeReschedule()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>New Start</label>
+        <input type="datetime-local" id="reschedule-start" />
+      </div>
+      <div class="form-group">
+        <label>New End</label>
+        <input type="datetime-local" id="reschedule-end" />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeReschedule()">Cancel</button>
+      <button class="btn btn-primary" onclick="submitReschedule()">Save</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="/js/api.js"></script>
+<script src="/js/doctor.js"></script>
+</body>
+</html>

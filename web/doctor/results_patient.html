@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Patient Results — HayatiCare</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🏥 HMSS</div>
+      <div class="sidebar-user-name" id="sidebar-user-name"></div>
+      <div class="sidebar-role">Doctor</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="dashboard.html" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="appointments.html" data-page="appointments"><span class="nav-icon">📅</span> Appointments</a>
+      <a href="patient_records.html" data-page="patient_records"><span class="nav-icon">👤</span> Patient Records</a>
+      <a href="results.html" data-page="results" class="active"><span class="nav-icon">🧪</span> Results</a>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" onclick="logout()">🚪 Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="content" id="main-content">
+    <div class="page-header">
+      <button class="btn btn-outline" onclick="navigateTo('results.html')" style="margin-right:12px">&larr; Back</button>
+      <h1>Patient Results</h1>
+    </div>
+
+    <div id="patient-info" style="margin-bottom:16px;font-size:1.05rem;font-weight:600;color:var(--dark)"></div>
+
+    <div id="batch-cards"></div>
+
+    <script>
+var _drPatientResultsRefreshInterval = null;
+var _currentPatientId = null;
+
+function pageInit() {
+  _currentPatientId = getPatientIdFromUrl();
+  if (!_currentPatientId) {
+    document.getElementById("patient-info").textContent = "Invalid patient";
+    return;
+  }
+  loadBatches();
+  startAutoRefresh();
+}
+
+function pageDestroy() {
+  stopAutoRefresh();
+}
+
+function getPatientIdFromUrl() {
+  var params = new URLSearchParams(window.location.search);
+  var id = parseInt(params.get("patient_id"), 10);
+  return isNaN(id) ? null : id;
+}
+
+function startAutoRefresh() {
+  stopAutoRefresh();
+  _drPatientResultsRefreshInterval = setInterval(function() {
+    loadBatches(true);
+  }, 5000);
+}
+
+function stopAutoRefresh() {
+  if (_drPatientResultsRefreshInterval) {
+    clearInterval(_drPatientResultsRefreshInterval);
+    _drPatientResultsRefreshInterval = null;
+  }
+}
+
+function loadBatches(isAutoRefresh) {
+  var container = document.getElementById("batch-cards");
+  if (!container) return;
+  if (!isAutoRefresh) {
+    container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--gray)">Loading...</div>';
+  }
+  api.get("/api/patient-results/patient/" + _currentPatientId + "/batches").then(function(data) {
+    if (!data.success) {
+      console.error("patient_batches error:", data.message || data);
+      if (!isAutoRefresh) container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--danger)">' + (data.message || "Error loading batches") + '</div>';
+      return;
+    }
+    var infoEl = document.getElementById("patient-info");
+    var list = data.data || [];
+    if (list.length > 0) {
+      infoEl.textContent = list[0].patient_name || "Patient #" + _currentPatientId;
+    } else {
+      infoEl.textContent = "Patient #" + _currentPatientId;
+    }
+    if (list.length === 0) {
+      container.innerHTML = '<div style="text-align:center;padding:60px 20px;color:var(--gray)">No result uploads for this patient</div>';
+      return;
+    }
+    var html = '<div class="results-summary-grid">';
+    list.forEach(function(b) {
+      var dateLabel = b.batch_date ? new Date(b.batch_date).toLocaleDateString(undefined, {year:"numeric",month:"long",day:"numeric"}) : "Unknown date";
+      html +=
+        '<div class="patient-result-card" onclick="navigateTo(\'results_batch.html?batch_id=' + b.batch_id + '&amp;patient_id=' + _currentPatientId + '\')">' +
+          '<div class="rsc-name">' + dateLabel + '</div>' +
+          '<div class="rsc-footer">' +
+            '<span class="rsc-count">' + b.result_count + ' test' + (b.result_count !== 1 ? "s" : "") + '</span>' +
+          '</div>' +
+        '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  });
+}
+
+(function() {
+  function _dc() {
+    var user = getCurrentUser();
+    if (!user || user.role !== "doctor") {
+      clearSession();
+      window.location.href = "/index.html";
+      return;
+    }
+    initSidebar(user);
+    pageInit();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", _dc);
+  } else {
+    _dc();
+  }
+})();
+    </script>
+  </main>
+</div>
+<div id="toast-container"></div>
+<script src="/js/api.js"></script>
+<script src="/js/doctor.js"></script>
+</body>
+</html>

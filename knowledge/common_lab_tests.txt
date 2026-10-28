@@ -1,0 +1,54 @@
+Common Laboratory Test Panels: CBC, Lipid Panel, and Basic Metabolic Panel
+
+Laboratory blood tests provide healthcare providers with objective data about how the body's organs and systems are functioning. Three of the most commonly ordered panels are the Complete Blood Count (CBC), the Lipid Panel, and the Basic Metabolic Panel (BMP). Understanding what each panel measures helps patients have informed conversations with their doctors.
+
+Complete Blood Count (CBC)
+
+A CBC is one of the most frequently ordered blood tests. It evaluates the cellular components of blood and provides information about overall health, infection, anemia, and blood disorders.
+
+Red Blood Cells (RBC): These cells contain hemoglobin and carry oxygen throughout the body. A low RBC count contributes to anemia. A high count may suggest dehydration or bone marrow over-production.
+
+Hemoglobin (HGB): The oxygen-carrying protein inside red blood cells. Low hemoglobin indicates anemia; high hemoglobin may indicate dehydration or altitude adaptation.
+
+Hematocrit (HCT): The percentage of blood volume made up of red blood cells. Low hematocrit accompanies anemia; high hematocrit suggests dehydration or polycythemia.
+
+Mean Corpuscular Volume (MCV): The average size of red blood cells. Small cells (microcytic) suggest iron deficiency; large cells (macrocytic) suggest B12 or folate deficiency.
+
+White Blood Cells (WBC): The immune system's primary cells. An elevated WBC count (leukocytosis) often indicates infection or inflammation. A low count (leukopenia) can indicate bone marrow suppression or viral illness.
+
+Platelets (PLT): Tiny cell fragments that initiate blood clotting. Low platelets (thrombocytopenia) increase bleeding risk. High platelets (thrombocytosis) may indicate inflammation or certain bone marrow conditions.
+
+The CBC is typically ordered during routine check-ups, when fatigue or infection is suspected, before surgery, or to monitor a known blood condition.
+
+Lipid Panel
+
+The lipid panel (lipid profile) measures fats in the blood to assess cardiovascular risk. It reports:
+
+- Total Cholesterol: The sum of all cholesterol fractions. A value below 5.2 mmol/L (200 mg/dL) is generally desirable.
+- LDL Cholesterol: "Bad" cholesterol; its build-up in arteries increases heart disease risk.
+- HDL Cholesterol: "Good" cholesterol; higher levels are protective against cardiovascular disease.
+- Triglycerides: A type of blood fat linked to cardiovascular risk, especially when combined with low HDL.
+
+The lipid panel is typically ordered as part of a cardiovascular risk assessment, during routine adult check-ups (recommended starting at age 20 for most adults), or when a patient has risk factors such as obesity, family history of heart disease, high blood pressure, or diabetes. Fasting for 9–12 hours before the test improves the accuracy of the triglyceride and LDL measurements.
+
+Basic Metabolic Panel (BMP)
+
+The BMP measures eight values that reflect kidney function, electrolyte balance, and blood sugar regulation. It is commonly ordered during hospital admissions and routine evaluations.
+
+Glucose: Blood sugar level. Used to screen for or monitor diabetes and pre-diabetes.
+
+Calcium: An essential mineral involved in bone health, muscle contraction, nerve function, and blood clotting. Abnormal levels may reflect parathyroid, kidney, or bone disorders.
+
+Sodium (Na): The main electrolyte in blood; regulates fluid balance and blood pressure. Abnormal sodium can reflect dehydration, kidney issues, or hormonal imbalances.
+
+Potassium (K): Vital for heart rhythm and muscle function. Abnormal potassium (especially high potassium) can cause dangerous heart arrhythmias.
+
+Chloride (Cl): An electrolyte that works with sodium to maintain fluid and acid-base balance.
+
+Carbon Dioxide (CO2 / Bicarbonate): Reflects the body's acid-base (pH) balance. Abnormal values may indicate kidney disease, lung conditions, or metabolic disorders.
+
+Creatinine: A waste product of muscle metabolism filtered by the kidneys. Elevated creatinine suggests impaired kidney function. Used alongside BUN to assess kidney health.
+
+Blood Urea Nitrogen (BUN): Another waste product filtered by the kidneys. Elevated BUN, especially in conjunction with high creatinine, indicates reduced kidney function. The BUN-to-creatinine ratio helps differentiate between kidney and non-kidney causes.
+
+These three panels together provide a comprehensive snapshot of blood health, cardiovascular risk, and organ function. Interpreting any result requires the full clinical context — your doctor is the right person to discuss your specific results through the HayatiCare app.

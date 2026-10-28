@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Dashboard — HMSS</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🏥 HMSS</div>
+      <div class="sidebar-user-name" id="sidebar-user-name"></div>
+      <div class="sidebar-role">Doctor</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="dashboard.html" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="appointments.html" data-page="appointments"><span class="nav-icon">📅</span> Appointments</a>
+      <a href="patient_records.html" data-page="patient_records"><span class="nav-icon">👤</span> Patient Records</a>
+      <a href="results.html" data-page="results"><span class="nav-icon">🧪</span> Results</a>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" onclick="logout()">🚪 Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="content" id="main-content">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+    </div>
+
+    <div class="cards-row">
+      <div class="card">
+        <div class="card-stat" id="stat-today-appts">—</div>
+        <div class="card-label">Today's Appointments</div>
+      </div>
+      <div class="card">
+        <div class="card-stat" id="stat-flagged" style="color:var(--danger)">—</div>
+        <div class="card-label">Flagged Results</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Patient</th><th>Start</th><th>End</th><th>Reason</th><th>Status</th></tr>
+        </thead>
+        <tbody id="dashboard-appts-tbody">
+          <tr><td colspan="5" class="text-muted" style="padding:24px;text-align:center;">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+function pageInit() {
+  loadDashboard();
+  startAutoRefresh();
+}
+
+(function() {
+  function _dc() {
+    var user = getCurrentUser();
+    if (!user || user.role !== "doctor") {
+      clearSession();
+      window.location.href = "/index.html";
+      return;
+    }
+    initSidebar(user);
+    pageInit();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", _dc);
+  } else {
+    _dc();
+  }
+})();
+    </script>
+  </main>
+</div>
+
+<div id="toast-container"></div>
+<script src="/js/api.js"></script>
+<script src="/js/doctor.js"></script>
+</body>
+</html>

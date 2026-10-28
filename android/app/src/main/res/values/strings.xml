@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HMSS</string>
+    <string name="login_title">Sign In</string>
+    <string name="dashboard_title">Patient Dashboard</string>
+    <string name="appointments_title">My Appointments</string>
+    <string name="test_results_title">Test Results</string>
+    <string name="home_test_title">Submit Home Test</string>
+    <string name="chatbot_title">Medical Assistant</string>
+</resources>

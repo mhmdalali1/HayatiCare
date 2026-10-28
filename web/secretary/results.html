@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Results — HayatiCare</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🏥 HMSS</div>
+      <div class="sidebar-user-name" id="sidebar-user-name"></div>
+      <div class="sidebar-role">Admin Secretary</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="dashboard.html" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="manage_patients.html" data-page="manage_patients"><span class="nav-icon">👥</span> Manage Patients</a>
+      <a href="manage_doctors.html" data-page="manage_doctors"><span class="nav-icon">👨‍⚕️</span> Manage Doctors</a>
+      <a href="appointments.html" data-page="appointments"><span class="nav-icon">📅</span> Appointments</a>
+      <a href="notifications.html" data-page="notifications"><span class="nav-icon">🔔</span> Notifications</a>
+      <a href="results.html" data-page="results" class="active"><span class="nav-icon">🧪</span> Results</a>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" onclick="logout()">🚪 Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="content" id="main-content">
+    <div class="page-header">
+      <h1>Medical Test Results</h1>
+    </div>
+
+    <div class="card" style="margin-bottom:24px">
+      <h2 class="section-title" style="margin-bottom:20px">➕ Enter Results</h2>
+      <div class="form-group" style="max-width:400px">
+        <label for="result-patient">Patient</label>
+        <select id="result-patient"></select>
+      </div>
+      <div id="test-form-rows" style="margin-top:20px"></div>
+      <div class="form-group" style="margin-top:20px;margin-bottom:0">
+        <button class="btn btn-primary" onclick="submitResults()">Submit Results</button>
+        <span id="submit-msg" style="margin-left:12px;font-size:.85rem;color:var(--gray)"></span>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-bottom:16px">📋 Submitted Results</h2>
+    <div id="results-summary" class="results-summary-grid"></div>
+
+    <script>
+var _resultsRefreshInterval = null;
+var _allTests = [];
+
+function pageInit() {
+  loadPatientsDropdown();
+  loadTests();
+  loadSummary();
+  startResultsAutoRefresh();
+}
+
+function pageDestroy() {
+  stopResultsAutoRefresh();
+}
+
+function startResultsAutoRefresh() {
+  stopResultsAutoRefresh();
+  _resultsRefreshInterval = setInterval(function() {
+    loadSummary(true);
+  }, 5000);
+}
+
+function stopResultsAutoRefresh() {
+  if (_resultsRefreshInterval) {
+    clearInterval(_resultsRefreshInterval);
+    _resultsRefreshInterval = null;
+  }
+}
+
+function loadPatientsDropdown() {
+  var sel = document.getElementById("result-patient");
+  sel.innerHTML = "<option value=''>Select patient</option>";
+  api.get("/api/patients").then(function(data) {
+    if (!data.success) return;
+    (data.data || []).forEach(function(p) {
+      var opt = document.createElement("option");
+      opt.value = p.patient_id;
+      opt.textContent = p.first_name + " " + p.last_name + " (" + (p.patient_code || "") + ")";
+      sel.appendChild(opt);
+    });
+  });
+}
+
+function loadTests() {
+  api.get("/api/medical-tests").then(function(data) {
+    if (!data.success) return;
+    _allTests = data.data || [];
+    renderTestForm();
+  });
+}
+
+function renderTestForm() {
+  var container = document.getElementById("test-form-rows");
+  container.innerHTML = "";
+  _allTests.forEach(function(t) {
+    var row = document.createElement("div");
+    row.className = "test-form-row";
+    row.innerHTML =
+      "<div class='test-form-label'><span class='test-form-code'>" + esc(t.test_code) + "</span> <span class='test-form-name'>" + esc(t.test_name) + "</span></div>" +
+      "<div class='test-form-input-wrap'><input type='text' class='test-form-input' id='tf-" + t.test_id + "' placeholder='Enter value' /></div>" +
+      "<div class='test-form-unit'>" + esc(t.default_unit || "") + "</div>";
+    container.appendChild(row);
+  });
+}
+
+function submitResults() {
+  var patientId = document.getElementById("result-patient").value;
+  if (!patientId) { showToast("Select a patient", "error"); return; }
+  var pid = parseInt(patientId);
+
+  var msgEl = document.getElementById("submit-msg");
+  msgEl.textContent = "Submitting...";
+
+  var entries = [];
+  _allTests.forEach(function(t) {
+    var input = document.getElementById("tf-" + t.test_id);
+    var val = input ? input.value.trim() : "";
+    if (!val) return;
+    entries.push({
+      patient_id: pid,
+      test_id: t.test_id,
+      value: val,
+      unit: t.default_unit || ""
+    });
+  });
+
+  if (entries.length === 0) {
+    msgEl.textContent = "No values entered";
+    return;
+  }
+
+  api.post("/api/patient-results/batch", { results: entries }).then(function(data) {
+    if (data.success) {
+      msgEl.textContent = data.message || "Submitted";
+      _allTests.forEach(function(t) {
+        var input = document.getElementById("tf-" + t.test_id);
+        if (input) input.value = "";
+      });
+      loadSummary();
+    } else {
+      msgEl.textContent = "Error: " + (data.message || "failed");
+    }
+    setTimeout(function() { msgEl.textContent = ""; }, 3000);
+  });
+}
+
+function loadSummary(isAutoRefresh) {
+  var container = document.getElementById("results-summary");
+  if (!container) return;
+  if (!isAutoRefresh) {
+    container.innerHTML = '<div class="text-muted" style="padding:20px">Loading...</div>';
+  }
+  api.get("/api/patient-results/summary").then(function(data) {
+    if (!data.success) {
+      if (!isAutoRefresh) container.innerHTML = '<div class="text-muted" style="padding:20px">Error loading results</div>';
+      return;
+    }
+    container.innerHTML = "";
+    var list = data.data || [];
+    if (list.length === 0) {
+      container.innerHTML = '<div class="text-muted" style="padding:20px;text-align:center">No results submitted yet</div>';
+      return;
+    }
+    list.forEach(function(item) {
+      var card = document.createElement("div");
+      card.className = "result-summary-card";
+      card.setAttribute("data-test-code", item.test_code);
+      card.onclick = function() {
+        navigateTo("test_detail.html?test_code=" + item.test_code);
+      };
+      card.innerHTML =
+        "<div class='rsc-badge'>" + esc(item.test_code) + "</div>" +
+        "<div class='rsc-name'>" + esc(item.test_name) + "</div>" +
+        "<div class='rsc-footer'><span class='rsc-count'>" + item.count + " result" + (item.count === 1 ? "" : "s") + "</span>" +
+        (item.latest_date ? "<span class='rsc-date'>" + fmtDate(item.latest_date) + "</span>" : "") +
+        "</div>";
+      container.appendChild(card);
+    });
+  });
+}
+
+function fmtDate(iso) {
+  if (!iso) return "—";
+  var d = new Date(iso);
+  return d.toLocaleDateString() + " " + d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+}
+
+function esc(s) {
+  if (typeof s !== "string") return s || "";
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+(function() {
+  function _dc() {
+    var user = getCurrentUser();
+    if (!user || user.role !== "secretary") {
+      clearSession();
+      window.location.href = "/index.html";
+      return;
+    }
+    initSidebar(user);
+    pageInit();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", _dc);
+  } else {
+    _dc();
+  }
+})();
+    </script>
+  </main>
+</div>
+<div id="toast-container"></div>
+<script src="/js/api.js"></script>
+<script src="/js/secretary.js"></script>
+</body>
+</html>

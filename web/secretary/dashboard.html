@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secretary Dashboard — HMSS</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🏥 HMSS</div>
+      <div class="sidebar-user-name" id="sidebar-user-name"></div>
+      <div class="sidebar-role">Admin Secretary</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="dashboard.html" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="manage_patients.html" data-page="manage_patients"><span class="nav-icon">👥</span> Manage Patients</a>
+      <a href="manage_doctors.html" data-page="manage_doctors"><span class="nav-icon">👨‍⚕️</span> Manage Doctors</a>
+      <a href="appointments.html" data-page="appointments"><span class="nav-icon">📅</span> Appointments</a>
+      <a href="notifications.html" data-page="notifications"><span class="nav-icon">🔔</span> Notifications</a>
+      <a href="results.html" data-page="results"><span class="nav-icon">🧪</span> Results</a>
+    </div>
+    <div class="sidebar-footer">
+      <button class="sidebar-logout" onclick="logout()">🚪 Sign Out</button>
+    </div>
+  </nav>
+
+  <main class="content" id="main-content">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="cards-row">
+      <div class="card">
+        <div class="card-stat" id="stat-patients">—</div>
+        <div class="card-label">Total Patients</div>
+      </div>
+      <div class="card">
+        <div class="card-stat" id="stat-doctors">—</div>
+        <div class="card-label">Total Doctors</div>
+      </div>
+      <div class="card">
+        <div class="card-stat" id="stat-appts">—</div>
+        <div class="card-label">Today's Appointments</div>
+      </div>
+    </div>
+    <div class="dashboard-grid">
+      <section class="section-card">
+        <h2 class="section-title">📋 Today&#39;s Schedule</h2>
+        <div class="timeline" id="today-schedule"></div>
+      </section>
+      <section class="section-card">
+        <h2 class="section-title">👨‍⚕️ Doctor Workload Today</h2>
+        <div class="workload-list" id="doctor-workload"></div>
+      </section>
+    </div>
+    <script>
+function pageInit() {
+  loadDashboard();
+}
+
+function loadDashboard() {
+  api.get("/api/secretaries/dashboard-summary").then(function(data) {
+    if (!data.success) return;
+    var d = data.data;
+
+    document.getElementById("stat-patients").textContent = d.total_patients;
+    document.getElementById("stat-doctors").textContent  = d.total_doctors;
+    document.getElementById("stat-appts").textContent    = d.today_appointments_count;
+
+    renderTodaySchedule(d.today_schedule);
+    renderDoctorWorkload(d.doctor_workload);
+  });
+}
+
+function renderTodaySchedule(list) {
+  var el = document.getElementById("today-schedule");
+  if (!el) return;
+
+  if (!list || list.length === 0) {
+    el.innerHTML =
+      '<div class="empty-state">' +
+        '<div class="empty-icon">📅</div>' +
+        '<p class="empty-text">No appointments scheduled for today</p>' +
+      '</div>';
+    return;
+  }
+
+  el.innerHTML = "";
+  list.forEach(function(a, i) {
+    var item = document.createElement("div");
+    item.className = "timeline-item " + (a.status || "pending");
+    item.style.animationDelay = (i * 0.07) + "s";
+    item.innerHTML =
+      '<div class="timeline-dot"></div>' +
+      '<div class="timeline-time">' + (a.time || "—") + '</div>' +
+      '<div class="timeline-card">' +
+        '<div class="timeline-patient">' + esc(a.patient_name) + '</div>' +
+        '<div class="timeline-doctor">' + esc(a.doctor_name) + '</div>' +
+        '<div class="timeline-reason">' + esc(a.reason) + '</div>' +
+        '<div class="timeline-status"><span class="badge badge-' + (a.status || "pending") + '">' + (a.status || "pending") + '</span></div>' +
+      '</div>';
+    el.appendChild(item);
+  });
+}
+
+function renderDoctorWorkload(list) {
+  var el = document.getElementById("doctor-workload");
+  if (!el) return;
+
+  if (!list || list.length === 0) {
+    el.innerHTML =
+      '<div class="empty-state">' +
+        '<div class="empty-icon">👨‍⚕️</div>' +
+        '<p class="empty-text">No doctors found</p>' +
+      '</div>';
+    return;
+  }
+
+  var maxCount = Math.max.apply(null, list.map(function(d) { return d.appointments_today; }));
+  var denominator = Math.max(maxCount, 5);
+
+  el.innerHTML = "";
+  list.forEach(function(d, i) {
+    var pct = denominator > 0 ? Math.round((d.appointments_today / denominator) * 100) : 0;
+    var item = document.createElement("div");
+    item.className = "workload-item";
+    item.style.animationDelay = (i * 0.08) + "s";
+    item.innerHTML =
+      '<div class="workload-header">' +
+        '<span class="workload-name">' + esc(d.name) + '</span>' +
+        '<span class="workload-count">' + d.appointments_today + ' appt' + (d.appointments_today === 1 ? "" : "s") + '</span>' +
+      '</div>' +
+      '<div class="workload-bar-track">' +
+        '<div class="workload-bar-fill bar-' + d.status_label.toLowerCase() + '" style="width:' + pct + '%"></div>' +
+      '</div>' +
+      '<span class="workload-label label-' + d.status_label.toLowerCase() + '">' + d.status_label + '</span>';
+    el.appendChild(item);
+  });
+}
+
+function esc(s) {
+  if (typeof s !== "string") return s || "";
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+(function() {
+  function _dc() {
+    var user = getCurrentUser();
+    if (!user || user.role !== "secretary") {
+      clearSession();
+      window.location.href = "/index.html";
+      return;
+    }
+    initSidebar(user);
+    pageInit();
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", _dc);
+  } else {
+    _dc();
+  }
+})();
+    </script>
+  </main>
+</div>
+
+<div id="toast-container"></div>
+<script src="/js/api.js"></script>
+<script src="/js/secretary.js"></script>
+</body>
+</html>

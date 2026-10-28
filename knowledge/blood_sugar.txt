@@ -1,0 +1,53 @@
+Blood Glucose: Understanding Your Blood Sugar
+
+Blood glucose (blood sugar) refers to the concentration of glucose — a simple sugar — circulating in the bloodstream. Glucose is the body's primary energy source, particularly for the brain and muscles. It comes mainly from carbohydrates in food, which are digested and absorbed into the blood. The pancreas produces insulin, a hormone that helps cells absorb glucose from the blood for energy or storage.
+
+Types of Blood Glucose Tests
+
+Fasting Blood Glucose
+This test measures blood sugar after at least 8 hours without eating or drinking anything other than water. Because food has not recently influenced the reading, it reflects the body's baseline glucose regulation. It is the most commonly used screening test for diabetes.
+
+Random (Non-Fasting) Blood Glucose
+This test is taken at any time regardless of when the person last ate. It is used when symptoms of diabetes are present and a quick assessment is needed.
+
+HbA1c (Glycated Haemoglobin)
+HbA1c measures the percentage of haemoglobin molecules that have glucose attached to them. Since red blood cells live for approximately 2–3 months, HbA1c reflects the average blood glucose level over that period. It does not require fasting. It is used to diagnose diabetes and to monitor how well blood sugar is being managed over time.
+
+Normal Reference Ranges
+
+Fasting Blood Glucose:
+- Normal: 3.9 – 5.5 mmol/L (70 – 99 mg/dL)
+- Pre-diabetes (impaired fasting glucose): 5.6 – 6.9 mmol/L (100 – 125 mg/dL)
+- Diabetes: ≥ 7.0 mmol/L (≥ 126 mg/dL) on two separate tests
+
+2-Hour Post-Meal (Postprandial) Glucose:
+- Normal: < 7.8 mmol/L (< 140 mg/dL)
+- Pre-diabetes: 7.8 – 11.0 mmol/L (140 – 199 mg/dL)
+- Diabetes: ≥ 11.1 mmol/L (≥ 200 mg/dL)
+
+HbA1c:
+- Normal: Below 5.7%
+- Pre-diabetes: 5.7% – 6.4%
+- Diabetes: 6.5% or above on two separate tests
+
+Why the Fasting State Matters for Testing
+
+Eating raises blood glucose, and the body takes time to metabolize and regulate it back to baseline. If a test is taken shortly after eating, the result will be higher than the true fasting baseline, making it difficult to assess whether glucose regulation is normal. For fasting tests, patients should avoid food and sugary drinks for 8–10 hours before the blood draw. Plain water is allowed and will not affect results.
+
+Factors That Affect Blood Glucose Readings
+
+- Food: Carbohydrate-rich foods raise glucose most significantly.
+- Physical activity: Exercise generally lowers blood glucose by increasing cellular uptake.
+- Stress: Stress hormones (cortisol, adrenaline) raise blood glucose.
+- Sleep: Poor sleep is associated with reduced insulin sensitivity and higher glucose levels.
+- Illness: Infections and other illnesses can temporarily elevate blood glucose.
+- Medications: Some drugs (e.g. corticosteroids) raise blood glucose; others lower it.
+- Dehydration: Concentrates glucose in the blood, potentially raising the measured value.
+
+What Pre-Diabetes and Diabetes Mean Generally
+
+Pre-diabetes indicates that blood glucose is higher than normal but not yet in the diabetic range. It signals that the body is having difficulty regulating glucose effectively — a stage where lifestyle changes can often prevent progression to diabetes.
+
+Type 2 diabetes involves chronic elevation of blood glucose resulting from insulin resistance (cells do not respond normally to insulin) and often insufficient insulin production. Type 1 diabetes is an autoimmune condition in which the pancreas produces little or no insulin.
+
+If your blood glucose result is outside the normal range, your doctor is the right person to interpret what it means for your individual health. You can reach them through the HayatiCare app.
