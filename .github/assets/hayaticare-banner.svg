@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="390" viewBox="0 0 1280 390">
+  <title>HayatiCare — connected care, thoughtfully designed</title>
+  <desc>Custom navy and teal hero banner with project branding and connected care modules.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#061A2B"/><stop offset=".58" stop-color="#0C2F40"/><stop offset="1" stop-color="#0E5159"/></linearGradient>
+    <linearGradient id="accent" x1="0" x2="1"><stop stop-color="#91FCE0"/><stop offset="1" stop-color="#4DCAD6"/></linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#1A4757"/><stop offset="1" stop-color="#102C40"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#65EBC7" stop-opacity=".21"/><stop offset="1" stop-color="#65EBC7" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1280" height="390" rx="26" fill="url(#background)"/>
+  <circle cx="1080" cy="170" r="380" fill="url(#halo)"/>
+  <circle cx="1250" cy="0" r="230" fill="none" stroke="#9DEBDD" stroke-opacity=".12"/>
+  <circle cx="1250" cy="0" r="330" fill="none" stroke="#9DEBDD" stroke-opacity=".12"/>
+  <circle cx="1250" cy="0" r="430" fill="none" stroke="#9DEBDD" stroke-opacity=".12"/>
+  <rect x="83" y="54" width="48" height="48" rx="13" fill="#4FE2CB" fill-opacity=".14" stroke="#58E5D4" stroke-opacity=".7"/>
+  <path d="M107 66V90M95 78H119" stroke="#72F4D5" stroke-width="7" stroke-linecap="round"/>
+  <text x="148" y="83" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2.5" fill="#A5D0D6">SOFTWARE ENGINEERING  /  2026</text>
+  <text x="84" y="183" font-family="Segoe UI, Arial, sans-serif" font-weight="800" letter-spacing="-2" font-size="82" fill="#F4FCFF">Hayati<tspan fill="url(#accent)">Care</tspan></text>
+  <text x="90" y="232" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="500" fill="#DAEEF0">Connected care, thoughtfully designed.</text>
+  <text x="90" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#9BBFC6">A full-stack clinic management experience.</text>
+  <rect x="86" y="300" width="143" height="38" rx="19" fill="#4CDAC8" fill-opacity=".14" stroke="#7AE8DC" stroke-opacity=".42"/>
+  <text x="157" y="325" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#C1FFF0">FLUTTER</text>
+  <rect x="243" y="300" width="122" height="38" rx="19" fill="#7AD5E1" fill-opacity=".09" stroke="#7AD5E1" stroke-opacity=".4"/>
+  <text x="304" y="325" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#E0FCFF">FLASK</text>
+  <rect x="379" y="300" width="128" height="38" rx="19" fill="#7AD5E1" fill-opacity=".09" stroke="#7AD5E1" stroke-opacity=".4"/>
+  <text x="443" y="325" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#E0FCFF">MYSQL</text>
+  <path d="M889 146L998 141L1046 215M912 190L922 251" stroke="#7FE8DE" stroke-width="2" stroke-opacity=".55" stroke-dasharray="6 7"/>
+  <g fill="url(#panel)" stroke="#87E7DE" stroke-opacity=".45">
+    <rect x="745" y="116" width="200" height="99" rx="18"/>
+    <rect x="951" y="67" width="218" height="101" rx="18"/>
+    <rect x="876" y="244" width="259" height="100" rx="18"/>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#D6F4F5">
+    <text x="808" y="153">PATIENT</text><text x="808" y="175" fill="#80E8DA" font-weight="400">Mobile app</text>
+    <text x="1030" y="110">CLINIC</text><text x="1030" y="132" fill="#80E8DA" font-weight="400">Web portals</text>
+    <text x="968" y="285">BACKEND</text><text x="968" y="307" fill="#80E8DA" font-weight="400">API + database</text>
+  </g>
+  <rect x="765" y="142" width="28" height="44" rx="5" stroke="#78F1DF" stroke-width="3"/>
+  <circle cx="779" cy="178" r="2" fill="#78F1DF"/>
+  <rect x="979" y="102" width="37" height="29" rx="5" stroke="#78F1DF" stroke-width="3"/>
+  <path d="M986 124L994 116L1002 119L1009 109" stroke="#78F1DF" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="900" y="265" width="48" height="48" rx="12" fill="#7CE8D9" fill-opacity=".14"/>
+  <path d="M910 278H936M910 288H936M910 298H930" stroke="#78F1DF" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="931" cy="147" r="5" fill="#78F1DF"/><circle cx="922" cy="245" r="5" fill="#78F1DF"/>
+</svg>
